@@ -1,0 +1,8 @@
+array_sum_new.lo: /root/php-7.0.8/ext/array_sum_new/array_sum_new.c
+	$(LIBTOOL) --mode=compile $(CC) -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/root/php-7.0.8/ext/array_sum_new $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /root/php-7.0.8/ext/array_sum_new/array_sum_new.c -o array_sum_new.lo 
+$(phplibdir)/array_sum_new.la: ./array_sum_new.la
+	$(LIBTOOL) --mode=install cp ./array_sum_new.la $(phplibdir)
+
+./array_sum_new.la: $(shared_objects_array_sum_new) $(ARRAY_SUM_NEW_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_array_sum_new) $(ARRAY_SUM_NEW_SHARED_LIBADD)
+
